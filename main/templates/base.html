@@ -3,7 +3,7 @@
 <html>
 <head>
 
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}Alunos{% endblock %}</title>
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,15 +13,39 @@
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <a class="navbar-brand" href="/">
-                    <i class="fa fa-rocket" aria-hidden="true"></i>
-                    <span style="font-weight:bold;color:#333">Aluguma escola ai...</span>
-                </a>
-                  
-            </ul>
-        </nav>
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="/"> Gerenciador </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                            
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="eventlist/">Eventos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Usuários</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/accounts/login">Entrar</a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Sobre</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                                <a class="nav-link" href="/accounts/logout">Sair</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
     </header>
     <main>
         {% block content %}

@@ -4,6 +4,8 @@
 
     <div class="container">
         <h1>Lista de Alunos</h1>
+        <!-- Botão para adicionar novo aluno -->
+        <a href="{% url 'aluno-create' %}" class="btn btn-primary mb-3">Adicionar Aluno</a>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -15,9 +17,11 @@
             <tbody>
                 {% for aluno in alunos_list %}
                     <tr>
-                        <td>{{ aluno.nome }}</td>
+                        <td><a href="/alunoID/{{aluno.id}}" >{{ aluno.nome }}</td>
                         <td>{{ aluno.email }}</td>
                         <td>{{ aluno.telefone }}</td>
+                        <td><a href="/aluno/{{aluno.id}}/update/"><span><i class="fas fa-edit"></i></span></td>
+                        <td><a href="/deletealuno/{{aluno.id}}/"><span><i class="fas fa-trash"></i></span></td>
                     </tr>
             {% empty %}
                 <tr>
